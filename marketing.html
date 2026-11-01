@@ -11,13 +11,22 @@
 </head>
 <body class="marketing-page">
 <div class="wrap">
-  <header>
-    <a class="logo" href="index.html">BROS</a>
-    <nav class="mono">
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Bros Companies home"><span>BROS</span><span class="logo-divider">|</span><span class="logo-sub">COMPANIES</span></a>
+    <nav class="site-nav mono" aria-label="Main navigation">
       <a href="index.html#about">About</a>
-      <a href="index.html#work">Our work</a>
+      <a href="marketing.html" aria-current="page">Marketing</a>
+      <a href="production.html">Production</a>
+      <a href="careers.html">Careers</a>
       <a href="index.html#contact">Contact</a>
     </nav>
+    <div class="header-actions">
+      <a class="nav-cta mono" href="careers.html#apply">Work with us</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+        <svg class="moon-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"/></svg>
+        <svg class="sun-icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+      </button>
+    </div>
   </header>
 
     <section class="p-hero">
