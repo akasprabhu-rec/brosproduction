@@ -1,13 +1,39 @@
 /* Scroll reveal shared by every page */
 (function () {
   var root = document.documentElement;
+  var themeKey = 'bros-companies-theme';
+  var savedTheme = window.localStorage.getItem(themeKey);
+  if (savedTheme === 'light' || savedTheme === 'dark') root.setAttribute('data-theme', savedTheme);
+
+  function initThemeToggle() {
+    var button = document.querySelector('.theme-toggle');
+    if (!button) return;
+
+    function currentTheme() {
+      return root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }
+
+    function updateLabel() {
+      button.setAttribute('aria-label', currentTheme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+
+    updateLabel();
+    button.addEventListener('click', function () {
+      var nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', nextTheme);
+      window.localStorage.setItem(themeKey, nextTheme);
+      updateLabel();
+    });
+  }
+
   root.classList.add('js');
 
   var sel = [
     '.hero h1', '.meta p', '.statement p', '.statement .mono', '.sec-head', '.index li',
     '.photo', '.ab-grid > div > *', '.adv li', '.stats div',
     '.contact > .mono', '.contact h2', '.c-info', '#hello',
-    '.p-hero > *', '.film', '.poster', '.p-cta > *', '.svc', '.client'
+    '.p-hero > *', '.film', '.poster', '.p-cta > *', '.svc', '.client', '.career-area', '.career-apply > *'
   ].join(',');
 
   function init() {
@@ -24,6 +50,11 @@
     });
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  function start() {
+    init();
+    initThemeToggle();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
 })();
